@@ -24,7 +24,8 @@ const AICopywriter: React.FC = () => {
   };
 
   return (
-    <section id="engine" className="py-48 px-6 bg-[#010102] relative overflow-hidden">
+    // 이 섹션의 id="engine"이 Navbar에서 스크롤 타겟으로 사용됩니다.
+    <section id="engine" className="py-48 px-6 bg-[#010102] relative overflow-hidden scroll-mt-24">
       <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1000px] bg-[radial-gradient(circle_at_center,rgba(0,242,255,0.07)_0%,rgba(99,102,241,0.02)_40%,transparent_70%)] blur-[150px] pointer-events-none rounded-full"></div>
       
@@ -67,12 +68,6 @@ const AICopywriter: React.FC = () => {
              </div>
           </div>
         </div>
-
-        {error && (
-          <div className="mt-8 text-center font-mono text-xs text-red-500 animate-pulse uppercase tracking-widest">
-            {error}
-          </div>
-        )}
 
         {strategy && (
           <div className="mt-20 grid grid-cols-1 md:grid-cols-12 gap-8 animate-in fade-in slide-in-from-bottom-10">
