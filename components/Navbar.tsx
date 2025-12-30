@@ -8,18 +8,18 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
   const scrollToEngine = () => {
-    // 1. 홈 페이지가 아니면 홈으로 먼저 이동
+    // 1. 현재 페이지가 홈이 아니면 홈으로 먼저 이동
     if (currentPage !== 'home') {
       onNavigate('home');
     }
 
-    // 2. 리액트가 홈 화면을 렌더링할 시간을 충분히 줌 (0.5초)
+    // 2. 페이지 전환 후 컴포넌트가 렌더링될 시간을 충분히 줌 (500ms)
     setTimeout(() => {
       const engineSection = document.getElementById('engine');
       if (engineSection) {
         engineSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } else {
-        // 첫 번째 시도 실패 시 (애니메이션 등 지연 대응) 한 번 더 시도
+        // 실패 시 재시도 (렌더링 지연 대응)
         setTimeout(() => {
           document.getElementById('engine')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 300);
@@ -31,7 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
     <nav className="fixed top-0 left-0 right-0 z-[100] px-10 pointer-events-none">
       <div className="max-w-full mx-auto flex justify-between items-start pointer-events-auto">
         
-        {/* LOGO AREA */}
+        {/* 로고 영역 */}
         <div className="flex items-center gap-8 group cursor-pointer relative py-8" onClick={() => onNavigate('home')}>
           <div className="relative h-20 w-20 flex items-center justify-center">
             <div className="absolute inset-0 bg-cyan-500/10 rounded-full blur-[25px] group-hover:bg-cyan-400/25 transition-all duration-1000 animate-pulse"></div>
@@ -51,7 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
           </div>
         </div>
         
-        {/* NAVIGATION AREA - 스크린샷 디자인 적용 */}
+        {/* 네비게이션 영역 (스크린샷 디자인 적용 부분) */}
         <div className="flex flex-col items-end pt-24 gap-6">
            <div className="flex gap-8 items-center bg-black/40 backdrop-blur-2xl px-10 py-4 rounded-full border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
               <button 
@@ -72,12 +72,14 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
               >
                 Contact
               </button>
+              
+              {/* 구분선 */}
               <div className="w-[1px] h-4 bg-white/10 mx-2"></div>
               
-              {/* 스크린샷의 '하늘색 점' 디자인 버튼 */}
+              {/* AI_Connect 버튼 (하늘색 점 포함) */}
               <button 
                 onClick={scrollToEngine}
-                className="font-mono text-[10px] uppercase tracking-[0.3em] text-white hover:text-cyan-400 font-bold flex items-center gap-2 group/btn"
+                className="font-mono text-[10px] uppercase tracking-[0.3em] text-white hover:text-cyan-400 font-bold flex items-center gap-2"
               >
                 <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_8px_#00f2ff]"></div>
                 AI_Connect
@@ -86,7 +88,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
            
            <div className="mr-4 opacity-40 flex items-center gap-3">
              <div className="w-2 h-2 rounded-full bg-cyan-500 animate-ping"></div>
-             <span className="font-mono text-[8px] text-gray-500 uppercase tracking-widest font-black">CORE_READY // V9.2.4</span>
+             <span className="font-mono text-[8px] text-gray-500 uppercase tracking-widest font-black">SYNC_STABLE_V9.2.4</span>
            </div>
         </div>
       </div>
