@@ -2,8 +2,8 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { MarketingStrategy } from "../types";
 
-// Service to generate marketing strategies using Gemini 3 Flash
 export const generateMarketingStrategy = async (businessDescription: string): Promise<MarketingStrategy> => {
+  // process.env.API_KEY는 실행 환경에서 자동으로 주입됩니다.
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   
   const response = await ai.models.generateContent({
@@ -33,7 +33,6 @@ export const generateMarketingStrategy = async (businessDescription: string): Pr
     }
   });
 
-  // Extract text property safely as per Google GenAI SDK guidelines
   const text = response.text;
   if (!text) {
     throw new Error("AI failed to generate content.");
